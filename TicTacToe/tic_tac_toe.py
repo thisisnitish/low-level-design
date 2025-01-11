@@ -17,11 +17,34 @@ class TicTacToeGame:
         cross = PlayingPieceX()
         zero = PlayingPieceO()
 
-        player1 = Player("Nitish", cross)
-        player2 = Player("Vishal", zero)
+        p1 = input("Name the Player 1: ")
+        p2 = input("Name the Player 2: ")
+
+        p1_sign = input("What piece Player 1 want to choose, X or O ? ")
+        p2_sign = input("What piece Player 2 want to choose, X or O ? ")
+
+        if p1_sign == p2_sign:
+            raise ValueError("Player 1 and Player 2 can't have same piece")
         
-        self.players.append(player1)
-        self.players.append(player2)
+        if p1_sign.upper() == 'X':
+            player1 = Player(p1, cross)
+            self.players.append(player1)
+        else:
+            player1 = Player(p1, zero)
+            self.players.append(player1)
+
+        if p2_sign.upper() == 'X':
+            player2 = Player(p2, cross)
+            self.players.append(player2)
+        else:
+            player2 = Player(p2, zero)
+            self.players.append(player2)
+
+        # player1 = Player("Nitish", cross)
+        # player2 = Player("Vishal", zero)
+        
+        # self.players.append(player1)
+        # self.players.append(player2)
 
         self.board = Board(3)
 
@@ -47,8 +70,8 @@ class TicTacToeGame:
                 continue
 
             # read the user input
-            print("Player: " + playerTurn.get_name() + " Enter row, column")
-            coords = input()
+            # print("Player: " + playerTurn.get_name() + " Enter row, column")
+            coords = input("Player: " + playerTurn.get_name() + " Enter row, column: ")
             coords = coords.split(',')
             row, col = int(coords[0]), int(coords[1])
 
@@ -85,22 +108,22 @@ class TicTacToeGame:
 
         # col check
         for i in range(0, self.board.size):
-            if len(self.board[i]) > 0 and self.board[i][col] == None or len(self.board[i]) > 0 and self.board[i][col].pieceType != pieceType:
+            if self.board[i][col] == None or self.board[i][col].pieceType != pieceType:
                 colMatch = False 
 
         # on-diagonal check
         j = 0
         for i in range(0, self.board.size):
-            if len(self.board[i]) > 0 and self.board[i][j] == None or len(self.board[i]) > 0 and self.board[i][j].pieceType != pieceType:
+            if self.board[i][j] == None or self.board[i][j].pieceType != pieceType:
                 onDiagonal = False
-                j += 1
+            j += 1
 
         # off-diagonal check
         j = self.board.size-1 
         for i in range(0, self.board.size):
-            if len(self.board[i]) > 0 and self.board[i][j] == None or len(self.board[i]) > 0 and self.board[i][j].pieceType != pieceType:
+            if self.board[i][j] == None or self.board[i][j].pieceType != pieceType:
                 offDiagonal = False
-                j -= 1
+            j -= 1
 
         
         return rowMatch or colMatch or onDiagonal or offDiagonal

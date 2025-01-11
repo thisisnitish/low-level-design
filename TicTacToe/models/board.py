@@ -20,9 +20,9 @@ class Board:
         for i in range(0, self.size):
             for j in range(0, self.size):
                 if len(self.board[i]) > 0 and self.board[i][j] != None:
-                    print(self.board[i][j].pieceType.value, end="")
+                    print(self.board[i][j].pieceType.value, end=" ")
                 else:
-                    print("     ", end="")
+                    print(" ", end="")
                 print("  |  ", end="")    
             print()
 
