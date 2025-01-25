@@ -3,7 +3,7 @@
 class HashMap:
     INITIAL_SIZE = 1<<4 # 16
     MAXIMUM_CAPACITY = 1<<30 # 1073741824 or 2^30
-    LOAD_FACTOR = 0.75
+    # LOAD_FACTOR = 0.75
 
     def __init__(self, size=INITIAL_SIZE):
         if size == self.INITIAL_SIZE:
